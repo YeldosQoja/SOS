@@ -13,6 +13,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {Avatar, RoundedButton} from '../../components';
 import {DetailListItem} from './components';
 import {useTheme} from 'styled-components/native';
+import {ScreenName} from '../../types';
 
 const detailData = [
   {
@@ -30,7 +31,7 @@ const ProfileScreen = props => {
   const pushContactsScreen = () => {
     Navigation.push(props.componentId, {
       component: {
-        name: 'ContactsScreen',
+        name: ScreenName.Contacts,
         options: {
           topBar: {
             title: {

@@ -4,6 +4,7 @@ import {Navigation} from 'react-native-navigation';
 import LottieView from 'lottie-react-native';
 import {Loading, Spacer, PrimaryButton, SOSButton} from '../components';
 import {useTheme} from 'styled-components/native';
+import {ScreenName} from '../types';
 
 const HomeScreen = props => {
   const [state, setState] = useState('idle');
@@ -24,7 +25,7 @@ const HomeScreen = props => {
   const handleMapButton = () => {
     Navigation.push(props.componentId, {
       component: {
-        name: 'MapScreen',
+        name: ScreenName.Map,
         options: {
           topBar: {
             background: {
