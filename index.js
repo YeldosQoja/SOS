@@ -1,9 +1,23 @@
 /**
  * @format
  */
+import {Navigation} from 'react-native-navigation';
+import {defaultOptions, mainRoot} from './src/navigation/Navigation';
+import registerComponents from './src/navigation/registerComponents';
+import {ThemeProvider} from 'styled-components/native';
+import {appTheme} from './src/theme/constants';
+import {ScreenName} from './src/types';
 
-import {AppRegistry} from 'react-native';
-import App from './App';
-import {name as appName} from './app.json';
+registerComponents(Object.keys(ScreenName), Component => props => {
+  return (
+    <ThemeProvider theme={appTheme}>
+      <Component {...props} />
+    </ThemeProvider>
+  );
+});
 
-AppRegistry.registerComponent(appName, () => App);
+Navigation.setDefaultOptions(defaultOptions);
+
+Navigation.events().registerAppLaunchedListener(() => {
+  Navigation.setRoot(mainRoot);
+});
