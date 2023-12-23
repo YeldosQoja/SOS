@@ -1,7 +1,7 @@
 import {ComponentProvider} from 'react-native';
 import {ScreenName} from '../types';
 import {Navigation} from 'react-native-navigation';
-import {Screens} from '../screens';
+import {Screens} from '../types/Screens';
 
 export default function (
   screenNames: ScreenName[],

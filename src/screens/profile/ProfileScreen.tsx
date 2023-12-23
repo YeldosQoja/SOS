@@ -4,7 +4,6 @@ import {
   ScrollView,
   Text,
   PermissionsAndroid,
-  Modal,
 } from 'react-native';
 import React, {useState} from 'react';
 import {Navigation} from 'react-native-navigation';
@@ -65,10 +64,10 @@ const ProfileScreen = props => {
     }
   };
 
-  const handleModalOpen = () => {
+  const openModal = (screenName: ScreenName) => {
     Navigation.showModal({
       component: {
-        name: 'ModalScreen',
+        name: screenName,
       },
     });
   };
@@ -95,7 +94,7 @@ const ProfileScreen = props => {
         <RoundedButton
           title={'Больницы'}
           style={styles.button}
-          onPress={handleModalOpen}
+          onPress={() => openModal(ScreenName.HospitalList)}
           leadingIcon={
             <MaterialCommunityIcons
               name="hospital-building"
@@ -107,17 +106,12 @@ const ProfileScreen = props => {
         <RoundedButton
           title={'Болезни'}
           style={styles.button}
+          onPress={() => openModal(ScreenName.DiseaseList)}
           leadingIcon={
             <MaterialIcons name="local-hospital" size={24} color="white" />
           }
         />
       </View>
-      <Modal
-        visible={modalVisible}
-        animationType="slide"
-        onRequestClose={() => setModalVisible(false)}>
-        <View />
-      </Modal>
     </ScrollView>
   );
 };

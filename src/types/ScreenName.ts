@@ -9,5 +9,6 @@ export const enum ScreenName {
   History = 'History',
   Settings = 'Settings',
   HospitalList = 'HospitalList',
+  DiseaseList = 'DiseaseList',
   SettingsButton = 'SettingsButton',
 }
