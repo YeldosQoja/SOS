@@ -1,4 +1,4 @@
-import {LayoutRoot, Options} from 'react-native-navigation';
+import {LayoutRoot, Navigation, Options} from 'react-native-navigation';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FeatherIcons from 'react-native-vector-icons/Feather';
 import {ScreenName} from '../types/ScreenName';
@@ -114,7 +114,7 @@ export const mainRoot: LayoutRoot = {
                     },
                     bottomTab: {
                       icon: historyIcon,
-                      text: 'История болезней',
+                      text: 'История',
                       fontSize: 12,
                     },
                   },
@@ -154,4 +154,23 @@ export const mainRoot: LayoutRoot = {
       ],
     },
   },
+};
+
+export const pushNavigationScreen = (
+  componentId: string,
+  screenName: string,
+) => {
+  Navigation.push(componentId, {
+    component: {
+      name: screenName,
+    },
+  });
+};
+
+export const showModalScreen = (screenName: string) => {
+  Navigation.showModal({
+    component: {
+      name: screenName,
+    },
+  });
 };

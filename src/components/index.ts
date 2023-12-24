@@ -5,3 +5,5 @@ export * from './Spacer';
 export * from './SOSButton/SOSButton';
 export * from './Avatar/Avatar';
 export * from './Divider/Divider';
+export * from './Rating/Rating';
+export * from './SearchInput/SearchInput';

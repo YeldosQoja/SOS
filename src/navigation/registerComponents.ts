@@ -3,7 +3,7 @@ import {ScreenName} from '../types';
 import {Navigation} from 'react-native-navigation';
 import {Screens} from '../types/Screens';
 
-export default function (
+export function registerComponents(
   screenNames: ScreenName[],
   componentProvider?: ComponentProvider,
 ) {
