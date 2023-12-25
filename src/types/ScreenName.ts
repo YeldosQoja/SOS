@@ -11,4 +11,6 @@ export const enum ScreenName {
   HospitalList = 'HospitalList',
   DiseaseList = 'DiseaseList',
   SettingsButton = 'SettingsButton',
+  DiseaseDetail = 'DiseaseDetail',
+  DiseasePropertyDetail = 'DiseasePropertyDetail',
 }

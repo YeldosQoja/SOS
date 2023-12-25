@@ -74,18 +74,10 @@ const HomeScreen = props => {
               autoPlay
               loop={false}
             />
-            <Text
-              style={{
-                fontWeight: '600',
-                fontSize: 20,
-              }}>
+            <Text style={[styles.confirmationTitle, {color: theme.text}]}>
               {'Отправлено'}
             </Text>
-            <Text
-              style={{
-                fontSize: 16,
-                marginTop: 12,
-              }}>
+            <Text style={[styles.confirmationMessage, {color: theme.text}]}>
               {'Сообщение отправлено близким контактам'}
             </Text>
           </View>
@@ -112,5 +104,13 @@ const styles = StyleSheet.create({
   lottieView: {
     height: 200,
     width: 200,
+  },
+  confirmationTitle: {
+    fontWeight: '600',
+    fontSize: 20,
+  },
+  confirmationMessage: {
+    fontSize: 16,
+    marginTop: 12,
   },
 });

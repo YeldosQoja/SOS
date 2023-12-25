@@ -1,4 +1,3 @@
-import DiseaseListScreen from '../screens/diseases/DiseaseListScreen';
 import {ScreenName} from '.';
 import HomeScreen from '../screens/HomeScreen';
 import HospitalListScreen from '../screens/hospitals/HospitalListScreen';
@@ -11,6 +10,9 @@ import DiseaseHistoryScreen from '../screens/history/DiseaseHistoryScreen';
 import MapScreen from '../screens/map/MapScreen';
 import {SettingsButton} from '../screens/profile';
 import ProfileScreen from '../screens/profile/ProfileScreen';
+import DiseaseListScreen from '../screens/diseases/DiseaseListScreen';
+import DiseaseDetailScreen from '../screens/diseaseDetail/DiseaseDetailScreen';
+import DiseasePropertyDetailScreen from '../screens/diseaseDetail/DiseasePropertyDetailScreen';
 
 export const Screens = {
   [ScreenName.Splash]: SplashScreen,
@@ -25,4 +27,6 @@ export const Screens = {
   [ScreenName.DiseaseList]: DiseaseListScreen,
   [ScreenName.Settings]: SettingsScreen,
   [ScreenName.SettingsButton]: SettingsButton,
+  [ScreenName.DiseaseDetail]: DiseaseDetailScreen,
+  [ScreenName.DiseasePropertyDetail]: DiseasePropertyDetailScreen,
 };

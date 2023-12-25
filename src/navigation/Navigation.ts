@@ -167,6 +167,8 @@ export const pushNavigationScreen = (
   });
 };
 
+export const dismissModalScreen = Navigation.dismissModal;
+
 export const showModalScreen = (screenName: string) => {
   Navigation.showModal({
     component: {

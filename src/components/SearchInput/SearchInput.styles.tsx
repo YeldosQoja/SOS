@@ -4,7 +4,8 @@ export const Container = styled.View`
   background: white;
   flex-direction: row;
   margin: 16px;
-  padding: 12px;
+  align-items: center;
+  padding: 8px;
   border-radius: 12px;
   shadow-color: ${({theme: {text}}) => text};
   shadow-opacity: 0.15;
@@ -16,5 +17,6 @@ export const Container = styled.View`
 export const StyledTextInput = styled.TextInput`
   flex: 1;
   background: white;
-  font-size: 17px;
+  font-size: 16px;
+  padding: 8px;
 `;

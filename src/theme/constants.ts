@@ -3,6 +3,7 @@ export const appTheme = {
   text: '#000000',
   white: '#ffffff',
   gray: '#bfbfbf',
+  darkGray: 'rgba(100, 107, 130, 1)',
   red: {
     light: '#ffb7b8',
     dark: '#e20e00',
