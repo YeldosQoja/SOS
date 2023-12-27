@@ -7,6 +7,7 @@ import {
   Platform,
   Alert,
   Linking,
+  TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
@@ -16,6 +17,7 @@ import {Avatar, RoundedButton} from '../../components';
 import {DetailListItem} from './components';
 import {useTheme} from 'styled-components/native';
 import {ScreenName} from '../../types';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 const detailData = [
   {
@@ -51,6 +53,44 @@ const ProfileScreen: NavigationFunctionComponent<{}> = props => {
         passProps: {disease: {id, title}},
       },
     });
+  };
+
+  const handleAlertGalleryButton = async () => {
+    try {
+      const result = await launchImageLibrary({
+        mediaType: 'photo',
+        quality: 0.2,
+      });
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleAlertCameraButton = async () => {
+    try {
+      const result = await launchCamera({
+        mediaType: 'photo',
+        quality: 0.2,
+        cameraType: 'front',
+      });
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleAvatarClick = async () => {
+    Alert.alert('Выберите источник для фото профиля.', undefined, [
+      {
+        text: 'Галерея',
+        onPress: handleAlertGalleryButton,
+      },
+      {
+        text: 'Камера',
+        onPress: handleAlertCameraButton,
+      },
+    ]);
   };
 
   const handleContactsButton = async () => {
@@ -97,7 +137,9 @@ const ProfileScreen: NavigationFunctionComponent<{}> = props => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.topSection}>
-        <Avatar size={60} />
+        <TouchableOpacity onPress={handleAvatarClick}>
+          <Avatar size={60} />
+        </TouchableOpacity>
         <Text style={styles.userName}>Шапатай Димаш</Text>
       </View>
       <Text style={[styles.detailTitle, {color: theme.main}]}>Информация</Text>

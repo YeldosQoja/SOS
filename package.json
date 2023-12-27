@@ -12,10 +12,12 @@
   "dependencies": {
     "@react-native-segmented-control/segmented-control": "^2.4.3",
     "@reduxjs/toolkit": "^1.9.7",
+    "i18next": "^23.7.11",
     "lottie-react-native": "^6.4.1",
     "react": "18.2.0",
     "react-native": "0.72.7",
     "react-native-contacts": "^7.0.8",
+    "react-native-image-picker": "^7.1.0",
     "react-native-navigation": "^7.37.2",
     "react-native-vector-icons": "^10.0.3",
     "react-redux": "^8.1.3",
