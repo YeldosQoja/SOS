@@ -2,7 +2,7 @@ import {ScreenName} from '.';
 import HomeScreen from '../screens/HomeScreen';
 import HospitalListScreen from '../screens/hospitals/HospitalListScreen';
 import MessagesScreen from '../screens/MessagesScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import SettingsScreen from '../screens/settings/SettingsScreen';
 import SplashScreen from '../screens/SplashScreen';
 import ContactsScreen from '../screens/contacts/ContactsScreen';
 import DoctorScreen from '../screens/doctor/DoctorScreen';

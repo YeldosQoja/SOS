@@ -9,11 +9,12 @@ export const Container = styled.TouchableOpacity`
 export const Data = styled.Text`
   font-size: 20px;
   font-weight: 500;
+  color: ${({theme: {text}}) => text};
   margin-bottom: 8px;
 `;
 
 export const Description = styled.Text`
   font-size: 16px;
   font-weight: 400;
-  color: gray;
+  color: ${({theme: {gray}}) => gray};
 `;

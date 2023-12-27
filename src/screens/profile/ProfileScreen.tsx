@@ -4,9 +4,12 @@ import {
   ScrollView,
   Text,
   PermissionsAndroid,
+  Platform,
+  Alert,
+  Linking,
 } from 'react-native';
-import React, {useState} from 'react';
-import {Navigation} from 'react-native-navigation';
+import React from 'react';
+import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Avatar, RoundedButton} from '../../components';
@@ -23,9 +26,8 @@ const detailData = [
   },
 ];
 
-const ProfileScreen = props => {
+const ProfileScreen: NavigationFunctionComponent<{}> = props => {
   const theme = useTheme();
-  const [modalVisible, setModalVisible] = useState(false);
 
   const pushContactsScreen = () => {
     Navigation.push(props.componentId, {
@@ -42,24 +44,41 @@ const ProfileScreen = props => {
     });
   };
 
+  const handleDiseaseItemSelect = (id: number, title: string) => {
+    Navigation.push(props.componentId, {
+      component: {
+        name: ScreenName.DiseaseDetail,
+        passProps: {disease: {id, title}},
+      },
+    });
+  };
+
   const handleContactsButton = async () => {
-    const isReadContactsPermissionAlreadyGranted =
-      await PermissionsAndroid.check(
+    if (Platform.OS === 'android') {
+      const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
       );
-    if (isReadContactsPermissionAlreadyGranted) {
-      pushContactsScreen();
-      return;
-    }
-    const permissionStatus = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
-      {
-        title: 'Contacts',
-        message: 'This app would like to view your contacts.',
-        buttonPositive: 'Please accept bare mortal',
-      },
-    );
-    if (permissionStatus) {
+      if (granted === 'granted') {
+        pushContactsScreen();
+      } else {
+        Alert.alert(
+          'Разрешите доступ к контактам',
+          'Для работы приложения нужен доступ к вашим контактам. Разрешите в настройках. Спасибо!',
+          [
+            {
+              text: 'Отмена',
+              style: 'cancel',
+            },
+            {
+              text: 'Открыть настройки приложения',
+              onPress: () => {
+                Linking.openSettings();
+              },
+            },
+          ],
+        );
+      }
+    } else {
       pushContactsScreen();
     }
   };
@@ -68,6 +87,9 @@ const ProfileScreen = props => {
     Navigation.showModal({
       component: {
         name: screenName,
+        passProps: {
+          onSelectDiseaseItem: handleDiseaseItemSelect,
+        },
       },
     });
   };
@@ -75,7 +97,7 @@ const ProfileScreen = props => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.topSection}>
-        <Avatar size={80} />
+        <Avatar size={60} />
         <Text style={styles.userName}>Шапатай Димаш</Text>
       </View>
       <Text style={[styles.detailTitle, {color: theme.main}]}>Информация</Text>
@@ -125,14 +147,13 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
   },
   topSection: {
-    padding: 12,
     alignItems: 'center',
     flexDirection: 'row',
     backgroundColor: '#5e90ff',
   },
   userName: {
     color: '#191717',
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: '500',
   },
   detailTitle: {

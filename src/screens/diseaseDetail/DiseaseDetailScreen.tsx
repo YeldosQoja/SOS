@@ -2,6 +2,11 @@ import {Text, ScrollView, StyleSheet} from 'react-native';
 import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {DiseasePropertyListItem} from './components';
+import {
+  NavigationFunctionComponent,
+  NavigationProps,
+} from 'react-native-navigation';
+import {appTheme} from '../../theme';
 
 const properties = [
   {
@@ -26,7 +31,14 @@ const properties = [
   },
 ];
 
-const DiseaseDetailScreen = () => {
+interface Props {
+  disease: {
+    id: number;
+    title: string;
+  };
+}
+
+const DiseaseDetailScreen: NavigationFunctionComponent<Props> = ({}) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.description}>
@@ -44,6 +56,22 @@ const DiseaseDetailScreen = () => {
     </ScrollView>
   );
 };
+
+DiseaseDetailScreen.options = ({disease}: Props & NavigationProps) => ({
+  topBar: {
+    title: {
+      color: appTheme.text,
+      text: disease.title,
+    },
+    backButton: {
+      color: appTheme.text,
+    },
+    background: {
+      clipToBounds: true,
+      color: 'white',
+    },
+  },
+});
 
 const styles = StyleSheet.create({
   container: {

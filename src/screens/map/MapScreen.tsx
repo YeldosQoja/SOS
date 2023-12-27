@@ -4,6 +4,7 @@ import SegmentedControl from '@react-native-segmented-control/segmented-control'
 import {PrimaryButton} from '../../components';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {AddressListItem} from './components/AddressListItem/AddressListItem';
+import {NavigationFunctionComponent} from 'react-native-navigation';
 
 const segmentButtonLabels = ['Местоположение', 'Контакты'];
 const addressData = [
@@ -14,7 +15,7 @@ const addressData = [
   },
 ];
 
-const MapScreen = props => {
+const MapScreen: NavigationFunctionComponent<{}> = () => {
   const [selectedSegmentIndex, setSelectedSegmentIndex] = useState(1);
 
   const handleSegmentButtonSelect = (value: string) => {
@@ -44,7 +45,7 @@ const MapScreen = props => {
         onValueChange={handleSegmentButtonSelect}
       />
       {selectedSegmentIndex === 0 ? (
-        <View style={styles.mainView}></View>
+        <View style={styles.mainView} />
       ) : (
         <FlatList
           contentContainerStyle={styles.mainView}
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   segmentedControl: {
-    padding: 12,
+    height: 45,
   },
   mainView: {
     flex: 1,
