@@ -13,6 +13,7 @@ import ProfileScreen from '../screens/profile/ProfileScreen';
 import DiseaseListScreen from '../screens/diseases/DiseaseListScreen';
 import DiseaseDetailScreen from '../screens/diseaseDetail/DiseaseDetailScreen';
 import DiseasePropertyDetailScreen from '../screens/diseaseDetail/DiseasePropertyDetailScreen';
+import LanguageScreen from '../screens/language/LanguageScreen';
 
 export const Screens = {
   [ScreenName.Splash]: SplashScreen,
@@ -26,6 +27,7 @@ export const Screens = {
   [ScreenName.HospitalList]: HospitalListScreen,
   [ScreenName.DiseaseList]: DiseaseListScreen,
   [ScreenName.Settings]: SettingsScreen,
+  [ScreenName.Language]: LanguageScreen,
   [ScreenName.SettingsButton]: SettingsButton,
   [ScreenName.DiseaseDetail]: DiseaseDetailScreen,
   [ScreenName.DiseasePropertyDetail]: DiseasePropertyDetailScreen,

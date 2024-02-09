@@ -1,0 +1,12 @@
+{
+    "options": {
+        "language": "Тіл",
+        "other_settings": "Қосымша баптаулар",
+        "city": "Қала",
+        "exit": "Шығу"
+    },
+    "languages": {
+        "kz": "Қазақша",
+        "ru": "Орысша"
+    }
+}

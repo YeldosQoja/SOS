@@ -2,6 +2,7 @@ import {LayoutRoot, Options} from 'react-native-navigation';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FeatherIcons from 'react-native-vector-icons/Feather';
 import {ScreenName} from '../types/ScreenName';
+import i18n from './../i18n';
 
 const homeIcon = MaterialIcons.getImageSourceSync('home', 24, 'black');
 const messageIcon = FeatherIcons.getImageSourceSync(
@@ -60,13 +61,13 @@ export const mainRoot: LayoutRoot = {
                   options: {
                     topBar: {
                       title: {
-                        text: 'Главная',
+                        text: i18n.t('bottom_bar_buttons.home'),
                         color: 'white',
                       },
                     },
                     bottomTab: {
                       icon: homeIcon,
-                      text: 'Главная',
+                      text: i18n.t('bottom_bar_buttons.home'),
                       fontSize: 12,
                     },
                   },
@@ -84,13 +85,13 @@ export const mainRoot: LayoutRoot = {
                   options: {
                     topBar: {
                       title: {
-                        text: 'Доктор',
+                        text: i18n.t('bottom_bar_buttons.doctor'),
                         color: 'white',
                       },
                     },
                     bottomTab: {
                       icon: messageIcon,
-                      text: 'Доктор',
+                      text: i18n.t('bottom_bar_buttons.doctor'),
                       fontSize: 12,
                     },
                   },
@@ -108,13 +109,13 @@ export const mainRoot: LayoutRoot = {
                   options: {
                     topBar: {
                       title: {
-                        text: 'История болезней',
+                        text: i18n.t('bottom_bar_buttons.history'),
                         color: 'white',
                       },
                     },
                     bottomTab: {
                       icon: historyIcon,
-                      text: 'История',
+                      text: i18n.t('bottom_bar_buttons.history'),
                       fontSize: 12,
                     },
                   },
@@ -143,7 +144,7 @@ export const mainRoot: LayoutRoot = {
                     },
                     bottomTab: {
                       icon: personIcon,
-                      text: 'Профиль',
+                      text: i18n.t('bottom_bar_buttons.profile'),
                       fontSize: 12,
                     },
                   },

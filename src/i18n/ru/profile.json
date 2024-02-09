@@ -1,0 +1,9 @@
+{
+    "user_detail_section_title": "Информация",
+    "disease_title": "Болезнь",
+    "degree_title": "Степень",
+    "hospital_search_input_placeholder": "Поиск больниц",
+    "disease_search_input_placeholder": "Поиск болезней",
+    "rating_zero": "Баға жоқ",
+    "rating": "{{count}} баға"
+}

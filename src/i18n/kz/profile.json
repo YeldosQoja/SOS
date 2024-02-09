@@ -1,0 +1,11 @@
+{
+    "user_detail_section_title": "Ақпарат",
+    "disease_title": "Ауру түрі",
+    "degree_title": "Деңгейі",
+    "hospital_search_input_placeholder": "Ауруханаларды іздеу",
+    "disease_search_input_placeholder": "Ауру түрлерін іздеу",
+    "rating_zero": "Нет оценок",
+    "rating_ordinal_one": "{{count}} оценка",
+    "rating_ordinal_four": "{{count}} оценки",
+    "rating_ordinal_other": "{{count}} оценок"
+}

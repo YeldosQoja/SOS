@@ -18,18 +18,11 @@ import {DetailListItem} from './components';
 import {useTheme} from 'styled-components/native';
 import {ScreenName} from '../../types';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-
-const detailData = [
-  {
-    text: 'Болезнь: ...',
-  },
-  {
-    text: 'Степень: ...',
-  },
-];
+import {useTranslation} from 'react-i18next';
 
 const ProfileScreen: NavigationFunctionComponent<{}> = props => {
   const theme = useTheme();
+  const {t} = useTranslation(['profile', 'validation']);
 
   const pushContactsScreen = () => {
     Navigation.push(props.componentId, {
@@ -38,7 +31,7 @@ const ProfileScreen: NavigationFunctionComponent<{}> = props => {
         options: {
           topBar: {
             title: {
-              text: 'Контакты',
+              text: t('contacts'),
             },
           },
         },
@@ -81,16 +74,20 @@ const ProfileScreen: NavigationFunctionComponent<{}> = props => {
   };
 
   const handleAvatarClick = async () => {
-    Alert.alert('Выберите источник для фото профиля.', undefined, [
-      {
-        text: 'Галерея',
-        onPress: handleAlertGalleryButton,
-      },
-      {
-        text: 'Камера',
-        onPress: handleAlertCameraButton,
-      },
-    ]);
+    Alert.alert(
+      t('validation:add_avatar_alert.title'),
+      t('validation:add_avatar_alert.message'),
+      [
+        {
+          text: t('validation:add_avatar_alert.gallery'),
+          onPress: handleAlertGalleryButton,
+        },
+        {
+          text: t('validation:add_avatar_alert.camera'),
+          onPress: handleAlertCameraButton,
+        },
+      ],
+    );
   };
 
   const handleContactsButton = async () => {
@@ -102,18 +99,19 @@ const ProfileScreen: NavigationFunctionComponent<{}> = props => {
         pushContactsScreen();
       } else {
         Alert.alert(
-          'Разрешите доступ к контактам',
-          'Для работы приложения нужен доступ к вашим контактам. Разрешите в настройках. Спасибо!',
+          t('request_contacts_permission.title', {ns: 'validation'}),
+          t('request_contacts_permission.message', {ns: 'validation'}),
           [
             {
-              text: 'Отмена',
+              text: t('cancel'),
               style: 'cancel',
             },
             {
-              text: 'Открыть настройки приложения',
-              onPress: () => {
-                Linking.openSettings();
-              },
+              text: t(
+                'request_contacts_permission.open_settings_button_title',
+                {ns: 'validation'},
+              ),
+              onPress: Linking.openSettings,
             },
           ],
         );
@@ -142,13 +140,14 @@ const ProfileScreen: NavigationFunctionComponent<{}> = props => {
         </TouchableOpacity>
         <Text style={styles.userName}>Шапатай Димаш</Text>
       </View>
-      <Text style={[styles.detailTitle, {color: theme.main}]}>Информация</Text>
-      {detailData.map((detail, index) => (
-        <DetailListItem key={index} title={detail.text} name={''} />
-      ))}
+      <Text style={[styles.detailTitle, {color: theme.main}]}>
+        {t('user_detail_section_title', {ns: 'profile'})}
+      </Text>
+      <DetailListItem title={t('disease_title')} name={''} />
+      <DetailListItem title={t('degree_title')} name={''} />
       <View style={styles.optionsView}>
         <RoundedButton
-          title={'Контакты'}
+          title={t('contacts')}
           style={styles.button}
           onPress={handleContactsButton}
           leadingIcon={
@@ -156,7 +155,7 @@ const ProfileScreen: NavigationFunctionComponent<{}> = props => {
           }
         />
         <RoundedButton
-          title={'Больницы'}
+          title={t('hospitals')}
           style={styles.button}
           onPress={() => openModal(ScreenName.HospitalList)}
           leadingIcon={
@@ -168,7 +167,7 @@ const ProfileScreen: NavigationFunctionComponent<{}> = props => {
           }
         />
         <RoundedButton
-          title={'Болезни'}
+          title={t('diseases')}
           style={styles.button}
           onPress={() => openModal(ScreenName.DiseaseList)}
           leadingIcon={

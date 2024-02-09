@@ -5,8 +5,10 @@ import LottieView from 'lottie-react-native';
 import {Loading, Spacer, PrimaryButton, SOSButton} from '../components';
 import {useTheme} from 'styled-components/native';
 import {ScreenName} from '../types';
+import {useTranslation} from 'react-i18next';
 
 const HomeScreen = props => {
+  const {t} = useTranslation(['common', 'validation']);
   const [state, setState] = useState('idle');
   const theme = useTheme();
 
@@ -46,13 +48,13 @@ const HomeScreen = props => {
   };
 
   const handleSOSButtonPress = () => {
-    Alert.alert('SOS', 'Вы точно хотите вызвать скорую помощь?', [
+    Alert.alert('SOS', t('validation:sos_button_alert_message'), [
       {
-        text: 'Нет',
+        text: t('no'),
         onPress: handleCancelCall,
       },
       {
-        text: 'Да',
+        text: t('yes'),
         onPress: handleConfirmCall,
       },
     ]);
@@ -75,14 +77,14 @@ const HomeScreen = props => {
               loop={false}
             />
             <Text style={[styles.confirmationTitle, {color: theme.text}]}>
-              {'Отправлено'}
+              {t('validation:ambulance_call_success.title')}
             </Text>
             <Text style={[styles.confirmationMessage, {color: theme.text}]}>
-              {'Сообщение отправлено близким контактам'}
+              {t('validation:ambulance_call_success.message')}
             </Text>
           </View>
           <Spacer />
-          <PrimaryButton title="Карта" onPress={handleMapButton} />
+          <PrimaryButton title={t('map')} onPress={handleMapButton} />
         </>
       )}
     </View>

@@ -7,14 +7,14 @@ export const Container = styled.TouchableOpacity`
 `;
 
 export const Data = styled.Text`
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 500;
   color: ${({theme: {text}}) => text};
   margin-bottom: 8px;
 `;
 
 export const Description = styled.Text`
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   color: ${({theme: {gray}}) => gray};
 `;

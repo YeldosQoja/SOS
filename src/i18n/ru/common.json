@@ -1,0 +1,20 @@
+{
+    "yes": "Да",
+    "no": "Нет",
+    "cancel": "Отмена",
+    "contacts": "Контакты",
+    "hospital": "Больница",
+    "hospitals": "Больницы",
+    "disease": "Болезнь",
+    "diseases": "Болезни",
+    "map": "Карта",
+    "home": "Дом",
+    "message": "Сообщение",
+    "bottom_bar_buttons": {
+        "home": "Главная",
+        "doctor": "Доктор",
+        "history": "История",
+        "profile": "Профиль"
+    },
+    "location": "Местоположение"
+}

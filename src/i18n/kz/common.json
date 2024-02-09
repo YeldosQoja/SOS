@@ -1,0 +1,20 @@
+{
+    "yes": "Иә",
+    "no": "Жоқ",
+    "cancel": "Бас тарту",
+    "contacts": "Контакттар",
+    "hospital": "Аурухана",
+    "hospitals": "Ауруханалар",
+    "disease": "Ауру",
+    "diseases": "Аурулар",
+    "map": "Карта",
+    "home": "Үй",
+    "message": "Хабарлама",
+    "bottom_bar_buttons": {
+        "home": "Басты",
+        "doctor": "Дәрігер",
+        "history": "Тарих",
+        "profile": "Профиль"
+    },
+    "location": "Локация"
+}

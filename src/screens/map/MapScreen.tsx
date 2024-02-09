@@ -5,8 +5,9 @@ import {PrimaryButton} from '../../components';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {AddressListItem} from './components/AddressListItem/AddressListItem';
 import {NavigationFunctionComponent} from 'react-native-navigation';
+import {useTranslation} from 'react-i18next';
 
-const segmentButtonLabels = ['Местоположение', 'Контакты'];
+const segmentButtonTranslationKeys = ['location', 'contacts'];
 const addressData = [
   {
     icon: <MaterialIcons name="home" color="black" size={26} />,
@@ -16,7 +17,11 @@ const addressData = [
 ];
 
 const MapScreen: NavigationFunctionComponent<{}> = () => {
+  const {t} = useTranslation();
   const [selectedSegmentIndex, setSelectedSegmentIndex] = useState(1);
+  const segmentButtonLabels = segmentButtonTranslationKeys.map(btnLabel =>
+    t(btnLabel),
+  );
 
   const handleSegmentButtonSelect = (value: string) => {
     const index = segmentButtonLabels.findIndex(label => label === value);
@@ -55,7 +60,7 @@ const MapScreen: NavigationFunctionComponent<{}> = () => {
         />
       )}
       <View style={styles.bottomView}>
-        <PrimaryButton title="Сообщение" onPress={handleMessageButton} />
+        <PrimaryButton title={t('message')} onPress={handleMessageButton} />
       </View>
     </View>
   );
