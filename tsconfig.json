@@ -3,7 +3,13 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["*"],
+      "@api": ["./api"],
+      "@api/*": ["./api/*"],
+      "@types": ["./types"],
+      "@navigation": ["./navigation"],
+      "@components": ["./components"],
+      "@slices": ["./slices"],
+      "@slices/*": ["./slices/*"]
     }
   }
 }
