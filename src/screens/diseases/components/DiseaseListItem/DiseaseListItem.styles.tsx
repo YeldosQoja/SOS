@@ -6,7 +6,7 @@ export const Container = styled.TouchableOpacity`
   align-items: center;
   padding: 16px;
   border-bottom-width: 0.25px;
-  border-color: ${({theme: {gray}}) => gray};
+  border-color: ${({theme: {gray}}) => gray.light};
 `;
 
 export const Poster = styled.View`

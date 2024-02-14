@@ -1,8 +1,23 @@
 import {View, FlatList, ListRenderItem} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {DiseaseListItem} from './components';
+import {Navigation, NavigationProps} from 'react-native-navigation';
+import {selectLanguage} from '@slices';
+import {useAppSelector} from '@hooks';
+import {useTranslation} from 'react-i18next';
 
-const DiseaseHistoryScreen = props => {
+const DiseaseHistoryScreen = ({componentId}: NavigationProps) => {
+  const language = useAppSelector(selectLanguage);
+  const {t} = useTranslation();
+
+  useEffect(() => {
+    Navigation.mergeOptions(componentId, {
+      bottomTab: {
+        text: t('bottom_bar_buttons.history'),
+      },
+    });
+  }, [language, componentId, t]);
+
   const renderItem: ListRenderItem<{}> = ({item, index}) => {
     return <DiseaseListItem />;
   };

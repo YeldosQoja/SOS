@@ -8,24 +8,39 @@ import {
   Alert,
   Linking,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Avatar, RoundedButton} from '../../components';
+import {Avatar, RoundedButton} from '@components';
 import {DetailListItem} from './components';
 import {useTheme} from 'styled-components/native';
-import {ScreenName} from '../../types';
+import {ScreenName} from '@types';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {useTranslation} from 'react-i18next';
+import {useAppSelector} from '@hooks';
+import {selectLanguage} from '@slices';
+import {useGetUserQuery} from '@api';
 
-const ProfileScreen: NavigationFunctionComponent<{}> = props => {
+const ProfileScreen: NavigationFunctionComponent<{}> = ({componentId}) => {
   const theme = useTheme();
   const {t} = useTranslation(['profile', 'validation']);
+  const language = useAppSelector(selectLanguage);
+  const {isLoading, isError, error, isSuccess, data} =
+    useGetUserQuery(undefined);
+
+  useEffect(() => {
+    Navigation.mergeOptions(componentId, {
+      bottomTab: {
+        text: t('bottom_bar_buttons.profile'),
+      },
+    });
+  }, [language, componentId, t]);
 
   const pushContactsScreen = () => {
-    Navigation.push(props.componentId, {
+    Navigation.push(componentId, {
       component: {
         name: ScreenName.Contacts,
         options: {
@@ -40,7 +55,7 @@ const ProfileScreen: NavigationFunctionComponent<{}> = props => {
   };
 
   const handleDiseaseItemSelect = (id: number, title: string) => {
-    Navigation.push(props.componentId, {
+    Navigation.push(componentId, {
       component: {
         name: ScreenName.DiseaseDetail,
         passProps: {disease: {id, title}},
@@ -132,51 +147,66 @@ const ProfileScreen: NavigationFunctionComponent<{}> = props => {
     });
   };
 
-  return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.topSection}>
-        <TouchableOpacity onPress={handleAvatarClick}>
-          <Avatar size={60} />
-        </TouchableOpacity>
-        <Text style={styles.userName}>Шапатай Димаш</Text>
+  if (isLoading) {
+    return <ActivityIndicator color={theme.main} />;
+  }
+
+  if (isError && error) {
+    return (
+      <View>
+        <Text>{`${error}`}</Text>
       </View>
-      <Text style={[styles.detailTitle, {color: theme.main}]}>
-        {t('user_detail_section_title', {ns: 'profile'})}
-      </Text>
-      <DetailListItem title={t('disease_title')} name={''} />
-      <DetailListItem title={t('degree_title')} name={''} />
-      <View style={styles.optionsView}>
-        <RoundedButton
-          title={t('contacts')}
-          style={styles.button}
-          onPress={handleContactsButton}
-          leadingIcon={
-            <MaterialIcons name="person-add" size={24} color="white" />
-          }
-        />
-        <RoundedButton
-          title={t('hospitals')}
-          style={styles.button}
-          onPress={() => openModal(ScreenName.HospitalList)}
-          leadingIcon={
-            <MaterialCommunityIcons
-              name="hospital-building"
-              size={24}
-              color="white"
-            />
-          }
-        />
-        <RoundedButton
-          title={t('diseases')}
-          style={styles.button}
-          onPress={() => openModal(ScreenName.DiseaseList)}
-          leadingIcon={
-            <MaterialIcons name="local-hospital" size={24} color="white" />
-          }
-        />
-      </View>
-    </ScrollView>
-  );
+    );
+  }
+
+  if (data && isSuccess) {
+    const {name, surname} = data;
+    return (
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.topSection}>
+          <TouchableOpacity onPress={handleAvatarClick}>
+            <Avatar size={60} />
+          </TouchableOpacity>
+          <Text style={styles.userName}>{`${name} ${surname}`}</Text>
+        </View>
+        <Text style={[styles.detailTitle, {color: theme.main}]}>
+          {t('user_detail_section_title', {ns: 'profile'})}
+        </Text>
+        <DetailListItem title={t('disease_title')} name={''} />
+        <DetailListItem title={t('degree_title')} name={''} />
+        <View style={styles.optionsView}>
+          <RoundedButton
+            title={t('contacts')}
+            style={styles.button}
+            onPress={handleContactsButton}
+            leadingIcon={
+              <MaterialIcons name="person-add" size={24} color="white" />
+            }
+          />
+          <RoundedButton
+            title={t('hospitals')}
+            style={styles.button}
+            onPress={() => openModal(ScreenName.HospitalList)}
+            leadingIcon={
+              <MaterialCommunityIcons
+                name="hospital-building"
+                size={24}
+                color="white"
+              />
+            }
+          />
+          <RoundedButton
+            title={t('diseases')}
+            style={styles.button}
+            onPress={() => openModal(ScreenName.DiseaseList)}
+            leadingIcon={
+              <MaterialIcons name="local-hospital" size={24} color="white" />
+            }
+          />
+        </View>
+      </ScrollView>
+    );
+  }
 };
 
 export default ProfileScreen;

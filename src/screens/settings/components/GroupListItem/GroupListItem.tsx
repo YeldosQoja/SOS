@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 const Container = styled.TouchableOpacity`
   padding: 12px;
   border-bottom-width: 0.25px;
-  border-color: ${({theme: {gray}}) => gray};
+  border-color: ${({theme: {gray}}) => gray.light};
 `;
 
 const Title = styled.Text`

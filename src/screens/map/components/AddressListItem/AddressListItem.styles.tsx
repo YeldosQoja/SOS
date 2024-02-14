@@ -6,7 +6,7 @@ export const Container = styled.View<{$selected: boolean}>`
   border-radius: 8px;
   border-width: ${({$selected}) => ($selected ? 1.1 : 0.4)}px;
   border-color: ${({$selected, theme: {main, gray}}) =>
-    $selected ? main : gray};
+    $selected ? main : gray.light};
   padding: 16px;
 `;
 
@@ -29,5 +29,5 @@ export const Title = styled.Text`
 
 export const AddressName = styled.Text`
   font-size: 14px;
-  color: ${props => props.theme.gray};
+  color: ${props => props.theme.gray.light};
 `;

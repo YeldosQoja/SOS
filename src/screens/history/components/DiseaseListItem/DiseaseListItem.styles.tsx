@@ -16,5 +16,5 @@ export const Data = styled.Text`
 export const Description = styled.Text`
   font-size: 15px;
   font-weight: 400;
-  color: ${({theme: {gray}}) => gray};
+  color: ${({theme: {gray}}) => gray.light};
 `;

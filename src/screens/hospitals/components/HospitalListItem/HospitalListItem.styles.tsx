@@ -24,7 +24,7 @@ export const HospitalName = styled.Text`
 export const HosptialKind = styled.Text`
   font-size: 15px;
   font-weight: 400;
-  color: ${({theme: {gray}}) => gray};
+  color: ${({theme: {gray}}) => gray.light};
   margin-bottom: 8px;
 `;
 
@@ -37,7 +37,7 @@ export const ReviewContainer = styled.View`
 
 export const ReviewCount = styled.Text`
   font-size: 14px;
-  color: ${({theme: {gray}}) => gray};
+  color: ${({theme: {gray}}) => gray.light};
   margin-left: 8px;
 `;
 

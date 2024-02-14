@@ -1,20 +1,32 @@
 import {View, Text, StyleSheet, Alert} from 'react-native';
-import React, {useState} from 'react';
-import {Navigation} from 'react-native-navigation';
+import React, {useEffect, useState} from 'react';
+import {Navigation, NavigationProps} from 'react-native-navigation';
 import LottieView from 'lottie-react-native';
-import {Loading, Spacer, PrimaryButton, SOSButton} from '../components';
+import {Loading, Spacer, PrimaryButton, SOSButton} from '@components';
 import {useTheme} from 'styled-components/native';
-import {ScreenName} from '../types';
+import {ScreenName} from '@types';
 import {useTranslation} from 'react-i18next';
+import {delay} from '@utils';
+import {useAppSelector} from '@hooks';
+import {selectAuth, selectLanguage, selectUser} from '@slices';
 
-const HomeScreen = props => {
+const HomeScreen = ({componentId}: NavigationProps) => {
   const {t} = useTranslation(['common', 'validation']);
   const [state, setState] = useState('idle');
   const theme = useTheme();
+  const language = useAppSelector(selectLanguage);
+  const {user} = useAppSelector(selectUser);
+  const auth = useAppSelector(selectAuth);
 
-  const delay = (ms: number) => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  };
+  console.log(user, auth);
+
+  useEffect(() => {
+    Navigation.mergeOptions(componentId, {
+      bottomTab: {
+        text: t('bottom_bar_buttons.home'),
+      },
+    });
+  }, [language, componentId, t]);
 
   const handleCancelCall = () => {};
 
@@ -25,7 +37,7 @@ const HomeScreen = props => {
   };
 
   const handleMapButton = () => {
-    Navigation.push(props.componentId, {
+    Navigation.push(componentId, {
       component: {
         name: ScreenName.Map,
         options: {
@@ -98,7 +110,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     justifyContent: 'center',
-    padding: 16,
+    padding: 12,
   },
   confirmationView: {
     alignItems: 'center',

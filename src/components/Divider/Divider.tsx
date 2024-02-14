@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export const Divider = styled.View<{$width: string}>`
-  background: ${props => props.theme.gray};
+  background: ${props => props.theme.gray.light};
   width: 100%;
   height: ${props => props.$width}px;
 `;

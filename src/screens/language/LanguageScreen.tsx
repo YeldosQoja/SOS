@@ -1,15 +1,26 @@
 import {View} from 'react-native';
-import React from 'react';
-import {NavigationFunctionComponent} from 'react-native-navigation';
+import React, {useEffect} from 'react';
+import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
 import {LanguageSelectItem} from './components';
 import {useTranslation} from 'react-i18next';
-import {useDispatch, useSelector} from 'react-redux';
-import {AppDispatch, changeLanguage, selectLanguage} from '../../store';
+import {changeLanguage, selectLanguage} from '@slices/settings';
+import {useAppDispatch, useAppSelector} from '@hooks';
 
-const LanguageScreen: NavigationFunctionComponent<{}> = () => {
+const LanguageScreen: NavigationFunctionComponent = ({componentId}) => {
   const {t} = useTranslation('settings');
-  const selectedLanguage = useSelector(selectLanguage);
-  const dispatch = useDispatch<AppDispatch>();
+  const selectedLanguage = useAppSelector(selectLanguage);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    Navigation.mergeOptions(componentId, {
+      topBar: {
+        title: {
+          text: t('options.language'),
+        },
+      },
+    });
+  }, [selectedLanguage, componentId, t]);
+
   return (
     <View>
       <LanguageSelectItem

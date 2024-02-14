@@ -6,7 +6,7 @@ const Container = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   border-bottom-width: 0.25px;
-  border-color: ${({theme: {gray}}) => gray};
+  border-color: ${props => props.theme.gray.light};
 `;
 
 const IconContainer = styled.View`
@@ -15,13 +15,13 @@ const IconContainer = styled.View`
   border-radius: 50px;
   justify-content: center;
   align-items: center;
-  background: ${({theme: {darkGray}}) => darkGray};
+  background: ${props => props.theme.gray.dark};
   margin-right: 8px;
 `;
 
 const Title = styled.Text`
   flex: 1;
-  color: ${({theme: {text}}) => text};
+  color: ${props => props.theme.text};
   font-size: 15px;
   font-weight: 500;
 `;

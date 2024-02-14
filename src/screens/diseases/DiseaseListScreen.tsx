@@ -1,6 +1,6 @@
 import {FlatList, ListRenderItem, View} from 'react-native';
 import React, {useEffect} from 'react';
-import {SearchInput} from '../../components';
+import {SearchInput} from '@components';
 import {DiseaseListItem} from './components';
 import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
 

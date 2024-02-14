@@ -11,7 +11,7 @@ export const Container = styled.TouchableOpacity<{
   margin-bottom: 0px;
   border-color: ${({$borderColor, $selected, theme: {gray, main}}) => {
     if (!$selected) {
-      return gray;
+      return gray.light;
     }
     if ($borderColor) {
       return $borderColor;
@@ -27,7 +27,7 @@ export const StyledImage = styled.Image`
   width: 38px;
   border-radius: 8px;
   margin-right: 8px;
-  shadow-color: ${({theme: {text}}) => text};
+  shadow-color: ${props => props.theme.text};
   shadow-opacity: 0.15;
   shadow-offset: 1px 2px;
   shadow-radius: 4px;
@@ -35,13 +35,13 @@ export const StyledImage = styled.Image`
 
 export const Title = styled.Text`
   flex: 1;
-  color: ${({theme: {text}}) => text};
+  color: ${props => props.theme.text};
   font-size: 15px;
   font-weight: 500;
 `;
 
 export const LocalLanguageSpell = styled.Text`
-  color: ${({theme: {darkGray}}) => darkGray};
+  color: ${({theme}) => theme.gray.dark};
   font-size: 13px;
   font-weight: 500;
 `;

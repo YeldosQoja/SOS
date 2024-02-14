@@ -12,13 +12,6 @@ const SettingsScreen: NavigationFunctionComponent<{}> = ({componentId}) => {
     Navigation.push(componentId, {
       component: {
         name: ScreenName.Language,
-        options: {
-          topBar: {
-            title: {
-              text: t('options.language'),
-            },
-          },
-        },
       },
     });
   };
