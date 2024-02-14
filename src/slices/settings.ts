@@ -1,14 +1,14 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
-import {RootState} from '..';
-import i18n from '../../i18n';
+import {RootState} from 'react-redux';
+import i18n from '../i18n';
 
 type Language = 'kz' | 'ru';
 
-interface State {
+export interface SettingsState {
   language: Language;
 }
 
-const initialState: State = {
+const initialState: SettingsState = {
   language: 'ru',
 };
 
