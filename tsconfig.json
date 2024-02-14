@@ -7,9 +7,13 @@
       "@api/*": ["./api/*"],
       "@types": ["./types"],
       "@navigation": ["./navigation"],
+      "@theme": ["./theme"],
       "@components": ["./components"],
       "@slices": ["./slices"],
-      "@slices/*": ["./slices/*"]
+      "@slices/*": ["./slices/*"],
+      "@store/*": ["./store/*"],
+      "@utils": ["./utils"],
+      "@hooks": ["./hooks"],
     }
   }
 }
