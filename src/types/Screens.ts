@@ -14,9 +14,17 @@ import DiseaseListScreen from '../screens/diseases/DiseaseListScreen';
 import DiseaseDetailScreen from '../screens/diseaseDetail/DiseaseDetailScreen';
 import DiseasePropertyDetailScreen from '../screens/diseaseDetail/DiseasePropertyDetailScreen';
 import LanguageScreen from '../screens/language/LanguageScreen';
+import SigninScreen from 'screens/auth/SigninScreen';
+import SignupScreen from 'screens/auth/SignupScreen';
+import AuthLaunchScreen from 'screens/auth/AuthLaunchScreen';
+import CodeConfirmationScreen from 'screens/auth/CodeConfirmationScreen';
 
 export const Screens = {
   [ScreenName.Splash]: SplashScreen,
+  [ScreenName.AuthLaunch]: AuthLaunchScreen,
+  [ScreenName.CodeConfirmation]: CodeConfirmationScreen,
+  [ScreenName.Signin]: SigninScreen,
+  [ScreenName.Signup]: SignupScreen,
   [ScreenName.Home]: HomeScreen,
   [ScreenName.Doctor]: DoctorScreen,
   [ScreenName.History]: DiseaseHistoryScreen,

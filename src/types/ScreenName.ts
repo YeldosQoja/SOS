@@ -1,5 +1,9 @@
 export const enum ScreenName {
   Splash = 'Splash',
+  AuthLaunch = 'AuthLaunch',
+  CodeConfirmation = 'CodeConfirmation',
+  Signin = 'Signin',
+  Signup = 'Signup',
   Home = 'Home',
   Map = 'Map',
   Doctor = 'Doctor',

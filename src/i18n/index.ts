@@ -2,7 +2,7 @@ import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import * as kz from './kz';
 import * as ru from './ru';
-import {store} from '../store';
+import {store} from '@store/store';
 
 export const initI18 = () => {
   const {

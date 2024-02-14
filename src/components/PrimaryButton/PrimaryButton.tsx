@@ -4,6 +4,7 @@ import {TouchableOpacityProps} from 'react-native';
 
 interface PrimaryButtonProps extends TouchableOpacityProps {
   title: string;
+
 }
 
 export const PrimaryButton = ({title, ...rest}: PrimaryButtonProps) => {

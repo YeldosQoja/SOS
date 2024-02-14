@@ -1,8 +1,8 @@
 import {LayoutRoot, Options} from 'react-native-navigation';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FeatherIcons from 'react-native-vector-icons/Feather';
-import {ScreenName} from '../types/ScreenName';
-import i18n from './../i18n';
+import {ScreenName} from '@types';
+import {appTheme} from '@theme';
 
 const homeIcon = MaterialIcons.getImageSourceSync('home', 24, 'black');
 const messageIcon = FeatherIcons.getImageSourceSync(
@@ -25,26 +25,52 @@ export const splashRoot: LayoutRoot = {
   },
 };
 
+export const authRoot: LayoutRoot = {
+  root: {
+    stack: {
+      options: {
+        hardwareBackButton: {
+          popStackOnPress: false,
+        },
+        topBar: {
+          backButton: {
+            visible: false,
+          },
+        },
+        popGesture: false,
+      },
+      children: [
+        {
+          component: {
+            name: ScreenName.AuthLaunch,
+          },
+        },
+      ],
+    },
+  },
+};
+
 export const defaultOptions: Options = {
   statusBar: {
-    backgroundColor: '#5e90ff',
+    backgroundColor: appTheme.main,
   },
   topBar: {
     title: {
-      color: 'white',
+      color: appTheme.white,
     },
     backButton: {
-      color: 'white',
+      color: appTheme.white,
     },
     background: {
-      color: '#5e90ff',
+      color: appTheme.main,
     },
   },
   bottomTab: {
-    fontSize: 14,
-    selectedFontSize: 14,
-    selectedIconColor: '#5e90ff',
-    selectedTextColor: '#5e90ff',
+    fontSize: 12,
+    textColor: appTheme.text,
+    iconColor: appTheme.text,
+    selectedIconColor: appTheme.main,
+    selectedTextColor: appTheme.main,
   },
 };
 
@@ -59,16 +85,8 @@ export const mainRoot: LayoutRoot = {
                 component: {
                   name: ScreenName.Home,
                   options: {
-                    topBar: {
-                      title: {
-                        text: i18n.t('bottom_bar_buttons.home'),
-                        color: 'white',
-                      },
-                    },
                     bottomTab: {
                       icon: homeIcon,
-                      text: i18n.t('bottom_bar_buttons.home'),
-                      fontSize: 12,
                     },
                   },
                 },
@@ -83,16 +101,8 @@ export const mainRoot: LayoutRoot = {
                 component: {
                   name: ScreenName.Doctor,
                   options: {
-                    topBar: {
-                      title: {
-                        text: i18n.t('bottom_bar_buttons.doctor'),
-                        color: 'white',
-                      },
-                    },
                     bottomTab: {
                       icon: messageIcon,
-                      text: i18n.t('bottom_bar_buttons.doctor'),
-                      fontSize: 12,
                     },
                   },
                 },
@@ -107,16 +117,8 @@ export const mainRoot: LayoutRoot = {
                 component: {
                   name: ScreenName.History,
                   options: {
-                    topBar: {
-                      title: {
-                        text: i18n.t('bottom_bar_buttons.history'),
-                        color: 'white',
-                      },
-                    },
                     bottomTab: {
                       icon: historyIcon,
-                      text: i18n.t('bottom_bar_buttons.history'),
-                      fontSize: 12,
                     },
                   },
                 },
@@ -144,8 +146,6 @@ export const mainRoot: LayoutRoot = {
                     },
                     bottomTab: {
                       icon: personIcon,
-                      text: i18n.t('bottom_bar_buttons.profile'),
-                      fontSize: 12,
                     },
                   },
                 },

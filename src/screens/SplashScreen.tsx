@@ -7,16 +7,13 @@ import {
 } from 'react-native';
 import React, {useEffect} from 'react';
 import {Navigation} from 'react-native-navigation';
-import {mainRoot} from '../navigation';
+import {authRoot, mainRoot} from '@navigation';
+import {delay} from '@utils';
+import {useAppSelector} from '@hooks';
+import {selectAuth} from '@slices';
 
 const SplashScreen = () => {
-  const delay = (ms: number) => {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve('Finished!');
-      }, ms);
-    });
-  };
+  const {isAuth} = useAppSelector(selectAuth);
 
   const requestContactsPermission = async () => {
     const granted = await PermissionsAndroid.request(
@@ -34,11 +31,14 @@ const SplashScreen = () => {
     if (Platform.OS === 'android') {
       requestContactsPermission();
     }
-    delay(3000).then(res => {
-      console.log(res);
-      Navigation.setRoot(mainRoot);
+    delay(3000).then(() => {
+      if (isAuth) {
+        Navigation.setRoot(mainRoot);
+      } else {
+        Navigation.setRoot(authRoot);
+      }
     });
-  }, []);
+  }, [isAuth]);
 
   return (
     <View style={styles.container}>
