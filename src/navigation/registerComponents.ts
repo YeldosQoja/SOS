@@ -1,13 +1,10 @@
-import {ComponentProvider} from 'react-native';
-import {ScreenName} from '../types';
 import {Navigation} from 'react-native-navigation';
-import {Screens} from '../types/Screens';
+import {Screens, ScreenName} from '@types';
 
 export function registerComponents(
   screenNames: ScreenName[],
-  componentProvider?: ComponentProvider,
+  componentProvider?: any,
 ) {
-  console.log(screenNames);
   return screenNames.map(screenName =>
     Navigation.registerComponent(screenName, () =>
       componentProvider !== undefined

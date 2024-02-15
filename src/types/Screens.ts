@@ -1,4 +1,4 @@
-import {ScreenName} from '.';
+import {ScreenName} from './ScreenName';
 import HomeScreen from '../screens/HomeScreen';
 import HospitalListScreen from '../screens/hospitals/HospitalListScreen';
 import MessagesScreen from '../screens/MessagesScreen';

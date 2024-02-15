@@ -46,10 +46,10 @@ const SigninScreen = ({componentId}: NavigationProps) => {
   const [signin] = useSigninMutation();
   const {t} = useTranslation('auth');
   const language = useAppSelector(selectLanguage);
-  const {code: smsCode, user} = useAppSelector(selectUser);
+  const {code, user} = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
 
-  console.log('sms code', smsCode, 'user', user);
+  console.log('sms code', code, 'user', user);
 
   useEffect(() => {
     Navigation.mergeOptions(componentId, {
@@ -62,11 +62,11 @@ const SigninScreen = ({componentId}: NavigationProps) => {
   }, [language, componentId, t]);
 
   const handleSignin = async ({phone}: SigninForm) => {
-    if (smsCode === null) {
+    if (code === null) {
       return;
     }
     try {
-      const result = await signin({phone, smsCode}).unwrap();
+      const result = await signin({phone, smsCode: code}).unwrap();
       Navigation.setRoot(mainRoot);
       dispatch(userLoggedIn(result as string));
     } catch (error) {

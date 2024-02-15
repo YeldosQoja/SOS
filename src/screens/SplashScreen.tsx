@@ -10,10 +10,13 @@ import {Navigation} from 'react-native-navigation';
 import {authRoot, mainRoot} from '@navigation';
 import {delay} from '@utils';
 import {useAppSelector} from '@hooks';
-import {selectAuth} from '@slices';
+import {selectAuth, selectLanguage} from '@slices';
+import {useTranslation} from 'react-i18next';
 
 const SplashScreen = () => {
   const {isAuth} = useAppSelector(selectAuth);
+  const language = useAppSelector(selectLanguage);
+  const {i18n} = useTranslation();
 
   const requestContactsPermission = async () => {
     const granted = await PermissionsAndroid.request(
@@ -31,6 +34,7 @@ const SplashScreen = () => {
     if (Platform.OS === 'android') {
       requestContactsPermission();
     }
+    i18n.changeLanguage(language);
     delay(3000).then(() => {
       if (isAuth) {
         Navigation.setRoot(mainRoot);
@@ -38,7 +42,7 @@ const SplashScreen = () => {
         Navigation.setRoot(authRoot);
       }
     });
-  }, [isAuth]);
+  }, [isAuth, language, i18n]);
 
   return (
     <View style={styles.container}>

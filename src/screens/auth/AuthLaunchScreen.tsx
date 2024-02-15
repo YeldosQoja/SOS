@@ -42,21 +42,40 @@ const AuthLaunchScreen = ({componentId}: NavigationProps) => {
   const [inputFocused, setInputFocused] = useState(false);
   const {t} = useTranslation('auth');
   const phoneInputRef = useRef<TextInput>(null);
-  const [sendSms, {isLoading, isError, error, isSuccess, data}] =
-    useSendSmsMutation();
+  const [sendSms] = useSendSmsMutation();
 
-  console.log(data);
-
-  const handleContinue = (values: FormValues) => {
-    sendSms(values.phone);
+  const handleContinue = async (values: FormValues) => {
+    try {
+      const result = await sendSms(values.phone).unwrap();
+      console.log(result);
+      Navigation.push(componentId, {
+        component: {
+          name: ScreenName.Signup,
+          passProps: {
+            phone: values.phone,
+          },
+          options: {
+            topBar: {
+              backButton: {
+                popStackOnPress: true,
+              },
+            },
+          },
+        },
+      });
+    } catch (error) {
+      console.log(error);
+      Toast.show({text1: error.data.error, type: 'error'});
+    }
   };
 
-  const {values, handleChange, handleBlur, handleSubmit} = useFormik({
-    initialValues: {phone: ''},
-    onSubmit: handleContinue,
-    validateOnChange: false,
-    validationSchema: FormSchema,
-  });
+  const {values, handleChange, handleBlur, handleSubmit, isSubmitting} =
+    useFormik({
+      initialValues: {phone: ''},
+      onSubmit: handleContinue,
+      validateOnChange: false,
+      validationSchema: FormSchema,
+    });
 
   useEffect(() => {
     Navigation.mergeOptions(componentId, {
@@ -70,27 +89,6 @@ const AuthLaunchScreen = ({componentId}: NavigationProps) => {
       phoneInputRef.current?.blur();
     });
   }, [componentId, t]);
-
-  if (isSuccess) {
-    Navigation.push(componentId, {
-      component: {
-        name: ScreenName.Signup,
-        passProps: {
-          phone: values.phone,
-        },
-        options: {
-          topBar: {
-            backButton: {
-              popStackOnPress: true,
-            },
-          },
-        },
-      },
-    });
-  } else if (isError && error) {
-    console.log(error);
-    Toast.show({text1: error.data.error, type: 'error'});
-  }
 
   return (
     <ContainerView>
@@ -114,7 +112,7 @@ const AuthLaunchScreen = ({componentId}: NavigationProps) => {
         }}
         disabled={values.phone.length === 0}
       />
-      <Overlay visible={isLoading} />
+      <Overlay visible={isSubmitting} />
     </ContainerView>
   );
 };
